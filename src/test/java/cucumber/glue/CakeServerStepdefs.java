@@ -32,13 +32,13 @@ public class CakeServerStepdefs {
     }
 
     @Given("^commit exists: (.*)$")
-    public void commitExists(String commitMessage) {
-        assertTrue(cakeServerPage.commitExists(commitMessage));
+    public void commitExists(String message) {
+        assertTrue(cakeServerPage.commitExists(message));
     }
 
     @Given("^commit does not exist: (.*)$")
-    public void commitDoesNotExist(String commitMessage) {
-        assertFalse(cakeServerPage.commitExists(commitMessage));
+    public void commitDoesNotExist(String message) {
+        assertFalse(cakeServerPage.commitExists(message));
     }
 
     @When("^create commit with message: (.*) and note: (.*)$")
