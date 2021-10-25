@@ -1,0 +1,29 @@
+dependencies {
+    testImplementation("io.cucumber:cucumber-java:6.0.0")
+    testImplementation("io.cucumber:cucumber-guice:6.0.0")
+    testImplementation("com.google.inject:guice:4.0")
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+task cucumber() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                '--plugin', 'pretty',
+                '--plugin', 'json:build/reports/cucumber-reports/json/cucumber.json',
+                '--plugin', 'junit:build/reports/cucumber-reports/junit/cucumber.xml',
+                '--plugin', 'html:build/reports/cucumber-reports/html/cucumber.html',
+                '--glue', 'cucumber.glue',
+                'src/test/resources/features'
+            ]
+        }
+    }
+}
