@@ -6,7 +6,9 @@ import cucumber.glue.element.TextField;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CakeServerPage extends PageObject {
+public class CakeServerPage {
+
+    private WebDriver driver;
 
     Button newCommitBtn;
 
@@ -25,15 +27,15 @@ public class CakeServerPage extends PageObject {
     Button deleteBtn;
 
     public CakeServerPage(WebDriver driver) {
-        super(driver);
-        newCommitBtn = new Button(driver, By.className("e2e-new-commit"));
-        commitList = new CommitList(driver, By.className("e2e-commit-message"), By.className("e2e-commit-note"));
-        messageField = new TextField(driver, By.className("e2e-message"));
-        noteField = new TextField(driver, By.className("e2e-note"));
-        saveBtn = new Button(driver, By.className("e2e-save"));
-        redoBtn = new Button(driver, By.className("e2e-redo"));
-        copyCommitMessageBtn = new Button(driver, By.className("e2e-copy-commit-message"));
-        deleteBtn = new Button(driver, By.className("e2e-delete"));
+        this.driver = driver;
+        this.newCommitBtn = new Button(driver, By.className("e2e-new-commit"));
+        this.commitList = new CommitList(driver, By.className("e2e-commit-message"), By.className("e2e-commit-note"));
+        this.messageField = new TextField(driver, By.className("e2e-message"));
+        this.noteField = new TextField(driver, By.className("e2e-note"));
+        this.saveBtn = new Button(driver, By.className("e2e-save"));
+        this.redoBtn = new Button(driver, By.className("e2e-redo"));
+        this.copyCommitMessageBtn = new Button(driver, By.className("e2e-copy-commit-message"));
+        this.deleteBtn = new Button(driver, By.className("e2e-delete"));
     }
 
     public void open() {

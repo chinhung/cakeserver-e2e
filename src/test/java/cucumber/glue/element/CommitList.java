@@ -8,13 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class CommitList extends ElementObject {
+public class CommitList {
+
+    private WebDriver driver;
 
     private By commitMessageSelector;
     private By commitNoteSelector;
 
     public CommitList(WebDriver driver, By commitMessageSelector, By commitNoteSelector) {
-        super(driver);
+        this.driver = driver;
         this.commitMessageSelector = commitMessageSelector;
         this.commitNoteSelector = commitNoteSelector;
     }

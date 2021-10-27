@@ -4,12 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Button extends ElementObject {
+public class Button {
+
+    private WebDriver driver;
 
     private By selector;
 
     public Button(WebDriver driver, By selector) {
-        super(driver);
+        this.driver = driver;
         this.selector = selector;
     }
 

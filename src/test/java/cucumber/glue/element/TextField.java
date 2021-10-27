@@ -4,12 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class TextField extends ElementObject {
+public class TextField {
+
+    private WebDriver driver;
 
     private By selector;
 
     public TextField(WebDriver driver, By selector) {
-        super(driver);
+        this.driver = driver;
         this.selector = selector;
     }
 
