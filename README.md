@@ -8,16 +8,16 @@ Cake Server end-to-end testing using Selenium and Cucumber.
 
 [Cake Server](https://github.com/chinhung/cakeserver) is one of my open source projects which helps programmers to split their tasks. It is a web app and could be validated by end-to-end testing. This repository uses Selenium, Cucumber and Page Object pattern to perform the end-to-end testing.
 
-## Setup
+## Chrome Driver Setup
 
-This repository use chrome driver to manipulate Chrome browser. Because the version of the driver upgrades quickly, which is set to be git ignored. Please download the driver with the version number as the same with that of your Chrome browser, and put it in the folder under this project folder: 
+This repository use chrome driver to manipulate Chrome browser. Because the version of the driver upgrades quickly, the driver is set to be git ignored. Please download the driver with the version number as the same with that of your Chrome browser, and put it in the folder under this project folder: 
 ```
 ./webdriver/chromedriver
 ```
 
 The download link is [here](https://chromedriver.chromium.org/downloads).
 
-## Run tests
+## Run Tests
 ```
 ./gradlew cucumber
 ```
@@ -185,7 +185,7 @@ public class CakeServerStepdefs {
 }
 ```
 
-## Test cases
+## Test Cases
 
 ```gherkin
 Feature: Create Commit
