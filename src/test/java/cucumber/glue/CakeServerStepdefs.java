@@ -22,7 +22,7 @@ public class CakeServerStepdefs {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "./webdriver/chromedriver");
         driver = new ChromeDriver();
-        cakeServerPage = new CakeServerPage(driver);
+        cakeServerPage = new CakeServerPage(driver, "https://chinhung.github.io/cakeserver/");
         cakeServerPage.open();
     }
 

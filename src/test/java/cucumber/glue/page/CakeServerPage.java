@@ -9,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 public class CakeServerPage {
 
     private WebDriver driver;
+    private String url;
+
     private Button newCommitBtn;
     private CommitList commitList;
     private TextField messageField;
@@ -18,8 +20,9 @@ public class CakeServerPage {
     private Button copyCommitMessageBtn;
     private Button deleteBtn;
 
-    public CakeServerPage(WebDriver driver) {
+    public CakeServerPage(WebDriver driver, String url) {
         this.driver = driver;
+        this.url = url;
         this.newCommitBtn = new Button(driver, By.className("e2e-new-commit"));
         this.commitList = new CommitList(driver, By.className("e2e-commit-message"), By.className("e2e-commit-note"));
         this.messageField = new TextField(driver, By.className("e2e-message"));
@@ -31,7 +34,7 @@ public class CakeServerPage {
     }
 
     public void open() {
-        driver.get("https://chinhung.github.io/cakeserver/");
+        driver.get(url);
     }
 
     public void createNewCommit(String message, String note) {
