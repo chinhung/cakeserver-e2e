@@ -11,7 +11,6 @@ import java.util.Optional;
 public class CommitList {
 
     private WebDriver driver;
-
     private By commitMessageSelector;
     private By commitNoteSelector;
 

@@ -9,22 +9,14 @@ import org.openqa.selenium.WebDriver;
 public class CakeServerPage {
 
     private WebDriver driver;
-
-    Button newCommitBtn;
-
-    CommitList commitList;
-
-    TextField messageField;
-
-    TextField noteField;
-
-    Button saveBtn;
-
-    Button redoBtn;
-
-    Button copyCommitMessageBtn;
-
-    Button deleteBtn;
+    private Button newCommitBtn;
+    private CommitList commitList;
+    private TextField messageField;
+    private TextField noteField;
+    private Button saveBtn;
+    private Button redoBtn;
+    private Button copyCommitMessageBtn;
+    private Button deleteBtn;
 
     public CakeServerPage(WebDriver driver) {
         this.driver = driver;

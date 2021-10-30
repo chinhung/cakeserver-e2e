@@ -3,7 +3,6 @@ package cucumber.glue.element;
 public class Commit {
 
     private String message;
-
     private String note;
 
     public Commit(String message, String note) {

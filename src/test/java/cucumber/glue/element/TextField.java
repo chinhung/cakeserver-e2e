@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 public class TextField {
 
     private WebDriver driver;
-
     private By selector;
 
     public TextField(WebDriver driver, By selector) {

@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 public class Button {
 
     private WebDriver driver;
-
     private By selector;
 
     public Button(WebDriver driver, By selector) {
