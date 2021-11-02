@@ -76,15 +76,32 @@ public class CakeServerPage {
         driver.get(url);
     }
 
-    public void createNewCommit(String message, String note) {
-        newCommitBtn.click();
+    public boolean commitExists(String message) {
+        return commitList.commitExists(message);
+    }
+
+    public boolean commitExists(String message, String note) {
+        return commitList.commitExists(message, note);
+    }
+
+    public void selectCommitWithMessageAndNote(String message, String note) {
+        commitList.selectCommitWithMessageAndNote(message, note);
+    }
+
+    public void enterCommitMessage(String message) {
         messageField.fill(message);
+    }
+
+    public void enterCommitNote(String note) {
         noteField.fill(note);
+    }
+
+    public void saveCommit() {
         saveBtn.click();
     }
 
-    public boolean commitExists(String message) {
-        return commitList.commitExists(message);
+    public void selectNewCommit() {
+        newCommitBtn.click();
     }
 }
 ```
@@ -168,19 +185,42 @@ public class CakeServerStepdefs {
         driver.close();
     }
 
-    @Given("^commit exists: (.*)$")
-    public void commitExists(String message) {
-        assertTrue(cakeServerPage.commitExists(message));
+    @Given("^commit with message: (.*) and note: (.*) exists$")
+    public void commitWithMessageAndNoteExists(String message, String note) {
+        assertTrue(cakeServerPage.commitExists(message, note));
     }
 
-    @Given("^commit does not exist: (.*)$")
-    public void commitDoesNotExist(String message) {
+    @Given("^commit with message: (.*) does not exist$")
+    public void commitWithMessageDoesNotExist(String message) {
         assertFalse(cakeServerPage.commitExists(message));
     }
 
     @When("^create commit with message: (.*) and note: (.*)$")
     public void createCommitWithMessageAndNote(String message, String note) {
-        cakeServerPage.createNewCommit(message, note);
+        cakeServerPage.selectNewCommit();
+        cakeServerPage.enterCommitMessage(message);
+        cakeServerPage.enterCommitNote(note);
+        cakeServerPage.saveCommit();
+    }
+
+    @When("^select commit with message: (.*) and note: (.*)$")
+    public void selectCommitWithMessageAndNote(String message, String note) {
+        cakeServerPage.selectCommitWithMessageAndNote(message, note);
+    }
+
+    @When("^enter commit message: (.*)")
+    public void enterCommitMessage(String message) {
+        cakeServerPage.enterCommitMessage(message);
+    }
+
+    @When("^enter commit note: (.*)")
+    public void enterCommitNote(String note) {
+        cakeServerPage.enterCommitNote(note);
+    }
+
+    @When("save commit")
+    public void saveCommit() {
+        cakeServerPage.saveCommit();
     }
 }
 ```
@@ -191,7 +231,28 @@ public class CakeServerStepdefs {
 Feature: Create Commit
 
     Scenario: create commit successfully
-        Given commit does not exist: New Message
+        Given commit with message: New Message does not exist
         When create commit with message: New Message and note: New Note
-        Then commit exists: New Message
+        Then commit with message: New Message and note: New Note exists
+```
+
+```gherkin
+Feature: Update Commit
+
+    Background:
+        Given commit with message: Given Message does not exist
+        When create commit with message: Given Message and note: Given Note
+        Then commit with message: Given Message and note: Given Note exists
+
+    Scenario: update commit message
+        When select commit with message: Given Message and note: Given Note
+        * enter commit message: Updated
+        * save commit
+        Then commit with message: Updated and note: Given Note exists
+
+    Scenario: update commit note
+        When select commit with message: Given Message and note: Given Note
+        * enter commit note: Updated
+        * save commit
+        Then commit with message: Given Message and note: Updated exists
 ```
