@@ -31,13 +31,13 @@ public class CakeServerStepdefs {
         driver.close();
     }
 
-    @Given("^commit exists: (.*)$")
-    public void commitExists(String message) {
-        assertTrue(cakeServerPage.commitExists(message));
+    @Given("^commit with message: (.*) and note: (.*) exists$")
+    public void commitWithMessageAndNoteExists(String message, String note) {
+        assertTrue(cakeServerPage.commitExists(message, note));
     }
 
-    @Given("^commit does not exist: (.*)$")
-    public void commitDoesNotExist(String message) {
+    @Given("^commit with message: (.*) does not exist$")
+    public void commitWithMessageDoesNotExist(String message) {
         assertFalse(cakeServerPage.commitExists(message));
     }
 

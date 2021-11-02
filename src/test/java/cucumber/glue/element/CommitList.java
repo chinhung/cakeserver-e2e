@@ -23,7 +23,21 @@ public class CommitList {
     public boolean commitExists(String message) {
         List<Commit> commits = findCommits();
         Optional<Commit> commit = commits.stream().filter(c -> c.getMessage().equals(message)).findAny();
+
         return commit.isPresent();
+    }
+
+    public boolean commitExists(String message, String note) {
+        List<Commit> commits = findCommits();
+        Optional<Commit> commit = commits.stream().filter(c -> c.getMessage().equals(message)).findAny();
+
+        if (!commit.isPresent()) {
+            return false;
+        }
+        if (!commit.get().getNote().equals(note)) {
+            return false;
+        }
+        return true;
     }
 
     private List<Commit> findCommits() {

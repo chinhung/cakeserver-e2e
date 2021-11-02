@@ -47,4 +47,8 @@ public class CakeServerPage {
     public boolean commitExists(String message) {
         return commitList.commitExists(message);
     }
+
+    public boolean commitExists(String message, String note) {
+        return commitList.commitExists(message, note);
+    }
 }

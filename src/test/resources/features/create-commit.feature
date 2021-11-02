@@ -1,6 +1,6 @@
 Feature: Create Commit
 
   Scenario: create commit successfully
-    Given commit does not exist: New Message
+    Given commit with message: New Message does not exist
     When create commit with message: New Message and note: New Note
-    Then commit exists: New Message
+    Then commit with message: New Message and note: New Note exists
