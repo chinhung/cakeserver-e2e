@@ -66,7 +66,7 @@ public class CakeServerPage {
     // ...
 }
 ```
-Encapsulate the operation details:
+Delegate the operations to elements:
 ```java
 public class CakeServerPage {
     
@@ -108,7 +108,7 @@ public class CakeServerPage {
 
 ## Web Elements
 
-Reusable web elements designed with DI principle:
+Reusable web elements designed with DI principle, and which encapsulate the operation details:
 
 ### Button
 ```java
