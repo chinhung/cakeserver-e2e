@@ -22,50 +22,47 @@ public class CommitList {
     }
 
     public boolean commitExists(String message) {
-        List<Commit> commits = findCommits();
-        Optional<Commit> commit = commits.stream().filter(c -> c.getMessage().equals(message)).findAny();
-
-        return commit.isPresent();
+        return findCommit(message).isPresent();
     }
 
     public boolean commitExists(String message, String note) {
-        List<Commit> commits = findCommits();
-        Optional<Commit> commit = commits.stream().filter(c -> c.getMessage().equals(message)).findAny();
-
-        if (!commit.isPresent()) {
-            return false;
-        }
-        if (!commit.get().getNote().equals(note)) {
-            return false;
-        }
-        return true;
+        return findCommit(message, note).isPresent();
     }
 
-    private List<Commit> findCommits() {
+    private Optional<Commit> findCommit(String message) {
+        List<Commit> commits = findAllCommits();
+        return commits.stream()
+                .filter(c -> c.getMessage().equals(message))
+                .findAny();
+    }
+
+    private Optional<Commit> findCommit(String message, String note) {
+        List<Commit> commits = findAllCommits();
+        return commits.stream()
+                .filter(c -> c.getMessage().equals(message))
+                .filter(c -> c.getNote().equals(note))
+                .findAny();
+    }
+
+    private List<Commit> findAllCommits() {
         List<WebElement> commitMessages = driver.findElements(commitMessageSelector);
         List<WebElement> commitNotes = driver.findElements(commitNoteSelector);
 
         List<Commit> result = new ArrayList<>();
         for (int i = 0; i < commitMessages.size(); i++) {
-            result.add(new Commit(commitMessages.get(i).getText(), commitNotes.get(i).getText()));
+            result.add(new Commit(commitMessages.get(i), commitNotes.get(i)));
         }
 
         return result;
     }
 
     public void selectCommitWithMessageAndNote(String message, String note) {
-        if (!commitExists(message, note)) {
+        Optional<Commit> commit = findCommit(message, note);
+
+        if (!commit.isPresent()) {
             throw new NotFoundException("commit with message: " + message + " and note: " + note + " not found");
         }
 
-        List<WebElement> commitMessages = driver.findElements(commitMessageSelector);
-        List<WebElement> commitNotes = driver.findElements(commitNoteSelector);
-
-        for (int i = 0; i < commitMessages.size(); i++) {
-            if (commitMessages.get(i).getText().equals(message) && commitNotes.get(i).getText().equals(note)) {
-                commitMessages.get(i).click();
-                break;
-            }
-        }
+        commit.get().select();
     }
 }

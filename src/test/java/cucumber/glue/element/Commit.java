@@ -1,28 +1,26 @@
 package cucumber.glue.element;
 
+import org.openqa.selenium.WebElement;
+
 public class Commit {
 
-    private String message;
-    private String note;
+    private WebElement message;
+    private WebElement note;
 
-    public Commit(String message, String note) {
+    public Commit(WebElement message, WebElement note) {
         this.message = message;
         this.note = note;
     }
 
     public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
+        return message.getText();
     }
 
     public String getNote() {
-        return note;
+        return note.getText();
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void select() {
+        message.click();
     }
 }
