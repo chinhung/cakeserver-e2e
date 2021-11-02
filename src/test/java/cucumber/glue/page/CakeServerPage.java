@@ -51,4 +51,20 @@ public class CakeServerPage {
     public boolean commitExists(String message, String note) {
         return commitList.commitExists(message, note);
     }
+
+    public void selectCommitWithMessageAndNote(String message, String note) {
+        commitList.selectCommitWithMessageAndNote(message, note);
+    }
+
+    public void enterCommitMessage(String message) {
+        messageField.fill(message);
+    }
+
+    public void enterCommitNote(String note) {
+        noteField.fill(note);
+    }
+
+    public void saveCommit() {
+        saveBtn.click();
+    }
 }

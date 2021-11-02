@@ -16,6 +16,7 @@ public class TextField {
 
     public void fill(String text) {
         WebElement element = driver.findElement(selector);
+        element.clear();
         element.sendKeys(text);
     }
 

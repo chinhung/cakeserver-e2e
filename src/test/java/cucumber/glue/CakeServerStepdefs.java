@@ -45,4 +45,24 @@ public class CakeServerStepdefs {
     public void createCommitWithMessageAndNote(String message, String note) {
         cakeServerPage.createNewCommit(message, note);
     }
+
+    @When("^select commit with message: (.*) and note: (.*)$")
+    public void selectCommitWithMessageAndNote(String message, String note) {
+        cakeServerPage.selectCommitWithMessageAndNote(message, note);
+    }
+
+    @When("^enter commit message: (.*)")
+    public void enterCommitMessage(String message) {
+        cakeServerPage.enterCommitMessage(message);
+    }
+
+    @When("^enter commit note: (.*)")
+    public void enterCommitNote(String note) {
+        cakeServerPage.enterCommitNote(note);
+    }
+
+    @When("save commit")
+    public void saveCommit() {
+        cakeServerPage.saveCommit();
+    }
 }

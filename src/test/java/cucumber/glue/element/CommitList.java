@@ -1,6 +1,7 @@
 package cucumber.glue.element;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -50,5 +51,21 @@ public class CommitList {
         }
 
         return result;
+    }
+
+    public void selectCommitWithMessageAndNote(String message, String note) {
+        if (!commitExists(message, note)) {
+            throw new NotFoundException("commit with message: " + message + " and note: " + note + " not found");
+        }
+
+        List<WebElement> commitMessages = driver.findElements(commitMessageSelector);
+        List<WebElement> commitNotes = driver.findElements(commitNoteSelector);
+
+        for (int i = 0; i < commitMessages.size(); i++) {
+            if (commitMessages.get(i).getText().equals(message) && commitNotes.get(i).getText().equals(note)) {
+                commitMessages.get(i).click();
+                break;
+            }
+        }
     }
 }
