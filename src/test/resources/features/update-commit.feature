@@ -1,9 +1,7 @@
 Feature: Update Commit
 
     Background:
-        Given commit with message: Given Message does not exist
-        When create commit with message: Given Message and note: Given Note
-        Then commit with message: Given Message and note: Given Note exists
+        Given create commit with message: Given Message and note: Given Note
 
     Scenario: update commit message
         When select commit with message: Given Message and note: Given Note
