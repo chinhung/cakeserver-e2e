@@ -37,13 +37,6 @@ public class CakeServerPage {
         driver.get(url);
     }
 
-    public void createNewCommit(String message, String note) {
-        newCommitBtn.click();
-        messageField.fill(message);
-        noteField.fill(note);
-        saveBtn.click();
-    }
-
     public boolean commitExists(String message) {
         return commitList.commitExists(message);
     }
@@ -66,5 +59,9 @@ public class CakeServerPage {
 
     public void saveCommit() {
         saveBtn.click();
+    }
+
+    public void selectNewCommit() {
+        newCommitBtn.click();
     }
 }
