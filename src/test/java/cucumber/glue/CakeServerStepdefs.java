@@ -64,8 +64,23 @@ public class CakeServerStepdefs {
         cakeServerPage.enterCommitNote(note);
     }
 
+    @When("^current commit message is (.*)")
+    public void currentCommitMessageIs(String message) {
+        assertEquals(message, cakeServerPage.currentCommitMessage());
+    }
+
+    @When("^current commit note is (.*)")
+    public void currentCommitNoteIs(String note) {
+        assertEquals(note, cakeServerPage.currentCommitNote());
+    }
+
     @When("save commit")
     public void saveCommit() {
         cakeServerPage.saveCommit();
+    }
+
+    @When("redo commit")
+    public void redoCommit() {
+        cakeServerPage.redoCommit();
     }
 }

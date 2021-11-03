@@ -22,6 +22,6 @@ public class TextField {
 
     public String grab() {
         WebElement element = driver.findElement(selector);
-        return element.getText();
+        return element.getAttribute("value");
     }
 }

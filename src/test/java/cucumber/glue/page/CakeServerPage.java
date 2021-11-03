@@ -64,4 +64,16 @@ public class CakeServerPage {
     public void selectNewCommit() {
         newCommitBtn.click();
     }
+
+    public void redoCommit() {
+        redoBtn.click();
+    }
+
+    public String currentCommitMessage() {
+        return messageField.grab();
+    }
+
+    public String currentCommitNote() {
+        return noteField.grab();
+    }
 }
