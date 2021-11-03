@@ -149,7 +149,7 @@ public class TextField {
 
     public String grab() {
         WebElement element = driver.findElement(selector);
-        return element.getText();
+        return element.getAttribute("value");
     }
 }
 ```
@@ -255,3 +255,5 @@ Feature: Update Commit
         * save commit
         Then commit with message: Given Message and note: Updated exists
 ```
+
+See all test cases at `./src/test/resources/features`
