@@ -93,5 +93,4 @@ public class CakeServerStepdefs {
     public void copyCommitMessage() {
         cakeServerPage.copyCommitMessage();
     }
-
 }

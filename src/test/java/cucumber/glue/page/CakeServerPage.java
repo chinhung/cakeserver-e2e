@@ -86,10 +86,6 @@ public class CakeServerPage {
         copyCommitMessageBtn.click();
     }
 
-    public void paste() {
-        Keys.chord(Keys.CONTROL, "v");
-    }
-
     public void enterCommitNoteFromClipboard() {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         String fromClipboard;
