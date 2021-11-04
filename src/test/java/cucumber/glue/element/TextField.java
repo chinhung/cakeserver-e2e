@@ -24,4 +24,14 @@ public class TextField {
         WebElement element = driver.findElement(selector);
         return element.getAttribute("value");
     }
+
+    public void clear() {
+        WebElement element = driver.findElement(selector);
+        element.clear();
+    }
+
+    public void focus() {
+        WebElement element = driver.findElement(selector);
+        element.click();
+    }
 }

@@ -4,7 +4,12 @@ import cucumber.glue.element.Button;
 import cucumber.glue.element.CommitList;
 import cucumber.glue.element.TextField;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
 
 public class CakeServerPage {
 
@@ -75,5 +80,25 @@ public class CakeServerPage {
 
     public String currentCommitNote() {
         return noteField.grab();
+    }
+
+    public void copyCommitMessage() {
+        copyCommitMessageBtn.click();
+    }
+
+    public void paste() {
+        Keys.chord(Keys.CONTROL, "v");
+    }
+
+    public void enterCommitNoteFromClipboard() {
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        String fromClipboard;
+        try {
+            fromClipboard = (String) clipboard.getData(DataFlavor.stringFlavor);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        noteField.fill(fromClipboard);
     }
 }

@@ -64,6 +64,11 @@ public class CakeServerStepdefs {
         cakeServerPage.enterCommitNote(note);
     }
 
+    @When("^enter commit note from clipboard")
+    public void enterCommitNoteFromClipboard() {
+        cakeServerPage.enterCommitNoteFromClipboard();
+    }
+
     @When("^current commit message is (.*)")
     public void currentCommitMessageIs(String message) {
         assertEquals(message, cakeServerPage.currentCommitMessage());
@@ -83,4 +88,10 @@ public class CakeServerStepdefs {
     public void redoCommit() {
         cakeServerPage.redoCommit();
     }
+
+    @When("copy commit message")
+    public void copyCommitMessage() {
+        cakeServerPage.copyCommitMessage();
+    }
+
 }
