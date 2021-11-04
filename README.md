@@ -76,10 +76,6 @@ public class CakeServerPage {
         driver.get(url);
     }
 
-    public boolean commitExists(String message) {
-        return commitList.commitExists(message);
-    }
-
     public boolean commitExists(String message, String note) {
         return commitList.commitExists(message, note);
     }
@@ -191,11 +187,6 @@ public class CakeServerStepdefs {
         assertTrue(cakeServerPage.commitExists(message, note));
     }
 
-    @Given("^commit with message: (.*) does not exist$")
-    public void commitWithMessageDoesNotExist(String message) {
-        assertFalse(cakeServerPage.commitExists(message));
-    }
-
     @When("^create commit with message: (.*) and note: (.*)$")
     public void createCommitWithMessageAndNote(String message, String note) {
         cakeServerPage.selectNewCommit();
@@ -232,7 +223,7 @@ public class CakeServerStepdefs {
 Feature: Create Commit
 
     Scenario: create commit successfully
-        Given commit with message: New Message does not exist
+        Given commit with message: New Message and note: New Note does not exist
         When create commit with message: New Message and note: New Note
         Then commit with message: New Message and note: New Note exists
 ```
