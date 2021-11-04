@@ -21,19 +21,8 @@ public class CommitList {
         this.commitNoteSelector = commitNoteSelector;
     }
 
-    public boolean commitExists(String message) {
-        return findCommit(message).isPresent();
-    }
-
     public boolean commitExists(String message, String note) {
         return findCommit(message, note).isPresent();
-    }
-
-    private Optional<Commit> findCommit(String message) {
-        List<Commit> commits = findAllCommits();
-        return commits.stream()
-                .filter(c -> c.getMessage().equals(message))
-                .findAny();
     }
 
     private Optional<Commit> findCommit(String message, String note) {

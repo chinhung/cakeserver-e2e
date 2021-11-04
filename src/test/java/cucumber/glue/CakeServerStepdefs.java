@@ -36,9 +36,9 @@ public class CakeServerStepdefs {
         assertTrue(cakeServerPage.commitExists(message, note));
     }
 
-    @Given("^commit with message: (.*) does not exist$")
-    public void commitWithMessageDoesNotExist(String message) {
-        assertFalse(cakeServerPage.commitExists(message));
+    @Given("^commit with message: (.*) and note: (.*) does not exist$")
+    public void commitWithMessageAndNoteDoesNotExist(String message, String note) {
+        assertFalse(cakeServerPage.commitExists(message, note));
     }
 
     @When("^create commit with message: (.*) and note: (.*)$")
@@ -92,5 +92,10 @@ public class CakeServerStepdefs {
     @When("copy commit message")
     public void copyCommitMessage() {
         cakeServerPage.copyCommitMessage();
+    }
+
+    @When("delete commit")
+    public void deleteCommit() {
+        cakeServerPage.deleteCommit();
     }
 }

@@ -42,10 +42,6 @@ public class CakeServerPage {
         driver.get(url);
     }
 
-    public boolean commitExists(String message) {
-        return commitList.commitExists(message);
-    }
-
     public boolean commitExists(String message, String note) {
         return commitList.commitExists(message, note);
     }
@@ -96,5 +92,9 @@ public class CakeServerPage {
         }
 
         noteField.fill(fromClipboard);
+    }
+
+    public void deleteCommit() {
+        deleteBtn.click();
     }
 }
